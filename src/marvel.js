@@ -8,11 +8,6 @@
         }
     
     }
-if(!process.env){
-    console.log("no")
-}else{
-    console.log("yes")
-}
 
 const marvelApi = {
     constructor(){
@@ -26,8 +21,8 @@ const marvelApi = {
     randCharacter(randNum){
         return `https://gateway.marvel.com:443/v1/public/characters?orderBy=name&limit=1&offset=${randNum}&${apiKey.Key()}`;     
     },
-    inputSuggestions(letters){
-        return `https://gateway.marvel.com:443/v1/public/characters?nameStartsWith=${letters}&limit=6&${apiKey.Key()}`;
+    suggestText(letters){
+        return `https://gateway.marvel.com:443/v1/public/characters?nameStartsWith=${letters}&limit=4&${apiKey.Key()}`;
     }
  }
 export default marvelApi;

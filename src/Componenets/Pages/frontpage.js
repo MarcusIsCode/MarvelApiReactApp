@@ -23,16 +23,10 @@ const FrontPageBox = styled.div`
   flex-direction: column;
 `;
 
-
-
-
-
-
 const FrontPage = ()=>{
 const {marvelValue } = useContext(MarvelValueContext);
 if(marvelValue[0]){
-  console.log(marvelValue);
-  console.log(characterValue(marvelValue).Name)
+
 }  
 
   

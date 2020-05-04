@@ -5,6 +5,8 @@ const H2 = styled.h2`
   margin: 5px 0px;
   padding: 0px;
   color: #be3144;
+  text-align:center;
 `;
+
 
 export default H2;

@@ -29,7 +29,11 @@ const SearchForm =(props)=>{
             e.preventDefault();
           }}
         >
-          <Input inputText={props.inputText} />
+          <Input inputText={props.inputText}
+                  value={props.value}
+                  list ={props.list}
+            
+            />
           <BoxRow>
             <Button onClick={props.inputClick}>
               <ButtonImg img={zoom} />
@@ -44,10 +48,10 @@ const SearchForm =(props)=>{
 }
 SearchForm.protoTypes ={
   inputText:PropTypes.any, 
-
+  list: PropTypes.string,
   inputClick: PropTypes.func,
-  randClick: PropTypes.func
- 
+  randClick: PropTypes.func,
+ value:PropTypes.string
 }
 
 export default SearchForm;

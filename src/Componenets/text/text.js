@@ -6,7 +6,6 @@ const Text = styled.p`
   color: white;
   height: auto;
   width: 90%;
-  
   overflow-wrap: break-word;
 `;
 

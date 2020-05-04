@@ -1,13 +1,13 @@
 import ImgNav from "../img/navImg";
 import styled from "styled-components";
 import axios from "axios";
-import React, { useState,useContext } from "react";
+import React, {useContext,useEffect } from "react";
 import BoxRow from "./../view/boxRow";
 import SearchForm from "./../Form/SearchForm";
 import marvelApi from "../../marvel";
 import getRandomInt from "../functions/number";
 import { MarvelValueContext } from "../context/sendToParent";
-
+import Suggestions from "./../input/inputSugest";
 
 const NavBox = styled.div`
   width: 100%;
@@ -27,27 +27,63 @@ const Nav = ()=>{
   
  //const [marvel, setMarvel] = useState(null);
  const [searchText, setSearchText] = React.useState("");
+  const [suggest, setSuggest] = React.useState("");
+
  const { addMarvelValue } = useContext(MarvelValueContext);
 
 
-
+//fetches a random marvel
  const fetchRandomMarvel = async () => {
    const response = await axios.get(
      marvelApi.randCharacter(getRandomInt(0, 1492))
    )
    addMarvelValue(response.data.data.results);
+  
  };
-
+ 
+//fetches the marvel you searched for
  const fetchMarvel = async () => {
    const response = await axios.get(marvelApi.character(searchText));
    addMarvelValue(response.data.data.results);
  };
+ //when the page loads
+ useEffect((marvelValue) => {
+   if (marvelValue === undefined) {
+     fetchRandomMarvel();
+   }
+     // eslint-disable-next-line react-hooks/exhaustive-deps
+ }, []); 
 
- /* const fetchSuggestion = async () => {
-  const response = await axios.get(marvelApi.suggestText(searchText));
-  setMarvelSuggest(response.data.data.results);
-}; */
+ 
 
+function handleChange(e){
+    const fetchSuggestion = async () => {
+      const response = await axios.get(marvelApi.suggestText(e.target.value));
+      let nameArray = [];
+      response.data.data.results.forEach(char=>{
+    
+          nameArray.push(char.name)
+      })
+     
+     setSuggest(nameArray);
+     
+    }; 
+  
+   setSearchText(e.target.value)
+    if(e.target.value !== ""){
+           fetchSuggestion();
+    }
+    if (e.target.value === "") {
+       setSuggest([]);
+    }
+}
+
+
+  function handleClick(e) {
+    let targetText = e.target.innerHTML
+    setSearchText(targetText);
+    setSuggest([])
+  }
  
 
     return (
@@ -55,10 +91,11 @@ const Nav = ()=>{
         <ImgNav />
         <BoxRow>
           <SearchForm
-            inputText={(e) => setSearchText(e.target.value)}
+            inputText={(e) => handleChange(e)}
             inputClick={fetchMarvel}
             randClick={fetchRandomMarvel}
-           
+            list ={Suggestions(suggest,handleClick)}
+            value={searchText}
           />
         </BoxRow>
 
