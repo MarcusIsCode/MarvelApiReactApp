@@ -8,7 +8,11 @@
         }
     
     }
-
+if(!process.env){
+    console.log("no")
+}else{
+    console.log("yes")
+}
 
 const marvelApi = {
     constructor(){
