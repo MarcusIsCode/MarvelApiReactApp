@@ -4,9 +4,8 @@ import styled from "styled-components";
 const Text = styled.p`
   font-size: 16px;
   color: white;
-  border: 1px solid white;
   height: auto;
-  width: 100%;
+  width: 90%;
   
   overflow-wrap: break-word;
 `;

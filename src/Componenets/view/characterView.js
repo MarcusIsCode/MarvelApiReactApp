@@ -5,7 +5,11 @@ display:flex;
 flex-direction:column;
 width:98%;
 position:relative;
-top:100px;
+top:15px;
+background:rgba(0,0,0,0.5);
+display:flex;
+align-items:center;
+border:1px solid red;
 
 `;
 

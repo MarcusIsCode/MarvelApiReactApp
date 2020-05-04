@@ -3,9 +3,8 @@ import styled from "styled-components";
 const MarvelImg = styled.img.attrs((props) => ({
   src: props.img,
 }))`
-  width: 70px;
-  height: 60px;
-  margin-top: 0px;
+  width: 320px;
+  margin-top: 30px;
   padding: 0 10px;
 `;
 
