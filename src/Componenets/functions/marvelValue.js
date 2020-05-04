@@ -1,9 +1,13 @@
 const characterValue =(val)=>{
     if (val[0]) {
-      
+        let imgSafe =
+          val[0].thumbnail.path +
+          "/portrait_uncanny." +
+          val[0].thumbnail.extension;
+        imgSafe = imgSafe.replace("http:", "https:")
         const char = {
           Name: val[0].name,
-          Img: val[0].thumbnail.path +"."+ val[0].thumbnail.extension,
+          Img: imgSafe,
           Description: val[0].description,
         };
         return char
